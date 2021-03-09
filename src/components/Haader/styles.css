@@ -1,0 +1,9 @@
+header .menuButton {
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .MuiToolbar-root {
+        flex-direction: column;
+    }
+}

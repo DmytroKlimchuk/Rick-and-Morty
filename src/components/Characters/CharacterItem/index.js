@@ -51,6 +51,7 @@ class CharacterItem extends Component {
                     <p><label>Name:</label> {character.name}</p>
                     <p><label>Status:</label> {character.status}</p>
                     <p><label>Species:</label> {character.species}</p>
+                    <p><label>Gender:</label> {character.gender}</p>
 
                     <Button variant="outlined" color="primary" onClick={() => this.handleClickOpen(character.id)}>
                         More detail

@@ -2,8 +2,8 @@ import React from 'react';
 import CharacterItem from "../CharacterItem";
 import './styles.css';
 
-const CharactersList = ({characters}) => {
-
+const CharactersList = (props) => {
+    const characters = props.characters ? props.characters : [];
     const characters_elements = characters.map(item => <CharacterItem key={item.id} character={item}/>);
 
     return (

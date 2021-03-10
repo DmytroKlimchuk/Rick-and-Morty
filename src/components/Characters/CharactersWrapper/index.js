@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { CircularProgress } from "@material-ui/core";
+import Pagination from '@material-ui/lab/Pagination';
 import CharactersList from "../CharactersList";
 import CharactersFilter from "../CharactersFilter";
 import './style.css';
@@ -9,6 +10,7 @@ class CharactersWrapper extends Component{
         super(props);
 
         this.state = {
+            pages: 0,
             isLoading: true,
             characters: [],
             species: '',
@@ -17,6 +19,7 @@ class CharactersWrapper extends Component{
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.changePage = this.changePage.bind(this);
     }
 
     componentDidMount() {
@@ -34,10 +37,11 @@ class CharactersWrapper extends Component{
 
     }
 
-    fetchFilteredCharacters() {
+    fetchFilteredCharacters(page = '') {
         let { species, status, gender} = this.state;
         let queryParams = '';
 
+        if(page) queryParams += `page=${page}&`;
         if(species) queryParams += `species=${species}&`;
         if(status) queryParams += `status=${status}&`;
         if(gender) queryParams += `gender=${gender}&`;
@@ -55,6 +59,7 @@ class CharactersWrapper extends Component{
             .then(response => response.json())
             .then(data =>
                 this.setState({
+                    pages: data.info.pages,
                     characters: data.results,
                     isLoading: false,
                 })
@@ -63,6 +68,10 @@ class CharactersWrapper extends Component{
                 error,
                 isLoading: false
             }));
+    }
+
+    changePage(e,page){
+        this.fetchFilteredCharacters(page);
     }
 
     render(){
@@ -80,6 +89,8 @@ class CharactersWrapper extends Component{
                     <div className="progress-wrapper"><CircularProgress /></div> :
                     <CharactersList characters={this.state.characters} />
                 }
+
+                <Pagination count={this.state.pages} color="primary" onChange={this.changePage}/>
             </div>
         )
     }

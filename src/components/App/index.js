@@ -2,9 +2,9 @@ import React from 'react';
 import { Container } from "@material-ui/core";
 import './styles.css';
 import { Switch, Route } from "react-router-dom";
-import Header from "../Haader";
+import Header from "../Header";
 import Home from "../Home";
-import CharactersList from '../Characters/CharactersList'
+import CharactersWrapper from '../Characters/CharactersWrapper'
 import EpisodesList from "../Episodes/EpisodesList";
 import LocationsList from "../Locations/LocationsList";
 import MyWatchList from "../My watch list/MyWatchList";
@@ -17,7 +17,7 @@ const App = () => {
             <main>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/characters" component={CharactersList} />
+                    <Route exact path="/characters" component={CharactersWrapper} />
                     <Route path="/episodes" component={EpisodesList} />
                     <Route path="/locations" component={LocationsList} />
                     <Route path="/my-watch-list" component={MyWatchList} />

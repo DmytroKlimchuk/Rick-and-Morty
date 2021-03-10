@@ -1,0 +1,8 @@
+.character img{
+    width: 50%;
+}
+
+.character span:first-child {
+    margin-right: 5px;
+    font-weight: bold;
+}
